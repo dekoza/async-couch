@@ -63,6 +63,27 @@ module = "tests.*"
 allow_untyped_defs = true
 disable_error_code = "attr-defined"
 
+
+[tool.tox]
+legacy_tox_ini = """
+    [tox]
+    min_version = 4.0
+    env_list =
+        py311
+        py312
+        type
+
+    [testenv]
+    allowlist_externals = poetry
+    commands_pre = poetry install --no-root --sync
+    commands = poetry run pytest tests/ --import-mode importlib
+
+    [testenv:type]
+    deps = mypy
+    commands = mypy src
+"""
+
+
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
