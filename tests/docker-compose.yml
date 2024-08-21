@@ -1,6 +1,6 @@
 services:
   couchserver:
-    image: couchdb
+    build: .
     restart: always
     ports:
       - "5984:5984"
@@ -8,3 +8,12 @@ services:
       - ./.env
     volumes:
         - ./.data:/opt/couchdb/data
+#  couchserver:
+#    image: couchdb
+#    restart: always
+#    ports:
+#      - "5984:5984"
+#    env_file:
+#      - ./.env
+#    volumes:
+#        - ./.data:/opt/couchdb/data
